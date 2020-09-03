@@ -43,6 +43,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
 
+  //close the modal when finsish upload
   useEffect(() => {
     if (upload === true) {
       setTimeout(() => {
@@ -51,6 +52,7 @@ function App() {
     }
   }, [posts]);
 
+  //listen if there is any user log in or log out
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -77,6 +79,7 @@ function App() {
     };
   }, [user, username]);
 
+  //listener for new post
   useEffect(() => {
     db.collection("posts")
       .orderBy("timestamp", "desc")
@@ -91,6 +94,7 @@ function App() {
       });
   }, []);
 
+  //sign user up
   const signUp = (event) => {
     event.preventDefault();
 
@@ -106,6 +110,7 @@ function App() {
     setOpen(false);
   };
 
+  //sign user in
   const signIn = (event) => {
     event.preventDefault();
 
